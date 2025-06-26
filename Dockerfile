@@ -15,7 +15,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /server
 
 FROM debian:latest
 
-RUN apt-get update && apt-get install -y python3
+RUN apt-get update \
+    && apt-get install -y python3 nodejs npm \
+    && npm install -g @google/clasp
 
 COPY --from=build /server /server
 
